@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collectors - Pingballs.com</title>
+  <meta name="description" content="Meet fellow Ping golf ball collectors and learn about their collections.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Ping<span>balls</span>.com</a>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="colors.html">Colors &amp; Values</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="collectors.html" class="active">Collectors</a></li>
+        <li><a href="solheim.html">Karsten Solheim</a></li>
+        <li class="nav-dropdown"><a href="nike.html">Nike <svg class="chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dropdown-menu"><a href="nike.html">Nike Mojos Overview</a><div class="nav-dropdown-divider"></div><a href="nike-press.html">Press Releases</a><a href="nike-karma.html">Mojo Karma</a></div></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Ping Golf Ball Collectors</h1>
+      <p>Meet the people who share this fascinating hobby.</p>
+    </div>
+
+    <div class="content">
+      <div style="background: linear-gradient(135deg, rgba(232,168,56,0.1), rgba(232,168,56,0.03)); border: 1px solid var(--accent); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; text-align: center;">
+        <p style="color: var(--accent); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">Want to be featured here?</p>
+        <p style="color: var(--text-muted);">Send a paragraph about yourself and your collection. You may include your email if you wish.</p>
+        <a href="mailto:info@pingballs.com" class="btn btn-primary" style="margin-top: 1rem;">Contact Us</a>
+      </div>
+
+      <div class="collector-card">
+        <h3>George</h3>
+        <div class="location">State College, PA &bull; eBay: pingballs1</div>
+        <p>Started collecting Ping golf balls in September 2001. Has approximately 140 different 2-color combinations and displays around 400 Ping golf balls. His objective is to collect an Eye and Eye2 ball of every 2-color combination Ping produced. He occasionally buys, sells and trades balls with other collectors. This hobby has been a great way to have fun and to develop new friendships.</p>
+      </div>
+
+      <div class="collector-card">
+        <h3>Lynne</h3>
+        <div class="location">Celina, Ohio &bull; eBay: pingdom</div>
+        <p>A teacher from Celina, Ohio. The Ping ball collection was the idea of their daughter, who was eight years old when she decided to start collecting Ping golf balls. Her small collection grew into a family hobby, so they buy and sell Pings on eBay to both enhance their collection and to introduce new collectors to the hobby.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Pingballs.com &mdash; An unofficial resource for Ping golf ball collectors.</p>
+      <p><a href="mailto:info@pingballs.com">info@pingballs.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
