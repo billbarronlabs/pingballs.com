@@ -413,6 +413,18 @@ body {
   text-decoration: underline;
 }
 
+.content a.btn {
+  text-decoration: none;
+}
+
+.content a.btn-primary {
+  color: var(--navy);
+}
+
+.content a.btn-secondary {
+  color: var(--text);
+}
+
 /* ===== FAQ ===== */
 .faq-item {
   background: var(--surface);
