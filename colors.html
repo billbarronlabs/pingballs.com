@@ -426,6 +426,23 @@
           <li>Three (3) Ping Zing Colored Balls Have Been Removed. Ping Zing (Dimple Pattern) Balls Not Painted or Sold by Ping Other Than White in Color.</li>
         </ul>
 
+        <h2>Color Reference Photos</h2>
+        <p>These photos show Ping golf balls arranged with their catalog numbers from the table above. Click any image to enlarge. Use these as a visual reference when identifying balls in your collection.</p>
+        <div class="gallery-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-bottom: 2rem;">
+          <div class="gallery-item" style="aspect-ratio: 4/3;" onclick="openLightbox(this)">
+            <img src="images/balls-2887.jpg" alt="Ping golf balls catalog numbers 1 through 21 arranged on towel with handwritten reference numbers" loading="lazy">
+          </div>
+          <div class="gallery-item" style="aspect-ratio: 4/3;" onclick="openLightbox(this)">
+            <img src="images/balls-2888.jpg" alt="Ping golf balls catalog numbers in the 100s range showing two-tone color combinations with reference numbers" loading="lazy">
+          </div>
+          <div class="gallery-item" style="aspect-ratio: 4/3;" onclick="openLightbox(this)">
+            <img src="images/balls-2889.jpg" alt="Ping golf balls catalog numbers in the 200s range showing rare color combinations with reference numbers" loading="lazy">
+          </div>
+          <div class="gallery-item" style="aspect-ratio: 4/3;" onclick="openLightbox(this)">
+            <img src="images/balls-2890.jpg" alt="Additional Ping golf balls with catalog reference numbers showing various two-tone combinations" loading="lazy">
+          </div>
+        </div>
+
         <div style="margin-top: 3rem; padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
           <h2 style="font-size: 1.2rem; margin-bottom: 1rem; border: none; padding: 0;">Learn More About Ping Golf Balls</h2>
           <ul style="list-style: none; padding: 0;">
@@ -439,6 +456,14 @@
 
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" onclick="navigateLightbox(event, -1)" aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-next" onclick="navigateLightbox(event, 1)" aria-label="Next">&rsaquo;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
   <footer class="footer">
     <div class="footer-inner">
@@ -491,6 +516,44 @@
       // Initialize count
       updateCount(rows.length);
     })();
+  </script>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const items = Array.from(document.querySelectorAll('.gallery-item'));
+    let currentIndex = -1;
+
+    function openLightbox(el) {
+      currentIndex = items.indexOf(el);
+      const img = el.querySelector('img');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function navigateLightbox(e, dir) {
+      e.stopPropagation();
+      currentIndex = (currentIndex + dir + items.length) % items.length;
+      const img = items[currentIndex].querySelector('img');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+      if (e.key === 'ArrowLeft') navigateLightbox(e, -1);
+      if (e.key === 'ArrowRight') navigateLightbox(e, 1);
+    });
   </script>
 
 </body>

@@ -1,0 +1,58 @@
+RewriteEngine On
+
+# ===== Redirects from old pingballs.com URLs to new modern site =====
+# Old site used HTML frames (index.html loaded banner.html, links.html, main.html)
+
+# Frame files → Home
+RewriteRule ^banner\.html$ /index.html [R=301,L]
+RewriteRule ^links\.html$ /index.html [R=301,L]
+RewriteRule ^links\.htm$ /index.html [R=301,L]
+RewriteRule ^main\.html$ /index.html [R=301,L]
+RewriteRule ^main\.htm$ /index.html [R=301,L]
+
+# Colors / Values pages → Colors & Values
+RewriteRule ^colors\.htm$ /colors.html [R=301,L]
+RewriteRule ^values\.htm$ /colors.html [R=301,L]
+RewriteRule ^sorted2005\.htm$ /colors.html [R=301,L]
+RewriteRule ^colors_revisions\.htm$ /colors.html [R=301,L]
+RewriteRule ^colors_030124\.html$ /colors.html [R=301,L]
+RewriteRule ^colors_old_02\.html$ /colors.html [R=301,L]
+RewriteRule ^colors_041525\.html$ /colors.html [R=301,L]
+RewriteRule ^colors_v16\.html$ /colors.html [R=301,L]
+RewriteRule ^rev5\.htm$ /colors.html [R=301,L]
+
+# FAQ
+RewriteRule ^faq\.htm$ /faq.html [R=301,L]
+
+# Gallery / Pictures
+RewriteRule ^pic1\.html$ /gallery.html [R=301,L]
+RewriteRule ^pic1\.htm$ /gallery.html [R=301,L]
+
+# Ball History
+RewriteRule ^ballhistory\.html$ /history.html [R=301,L]
+
+# Collectors / eBayers
+RewriteRule ^ebayers\.htm$ /collectors.html [R=301,L]
+
+# Solheim (note: old site had misspelling "Solhiem")
+RewriteRule ^Solhiem\.html$ /solheim.html [R=301,L]
+RewriteRule ^Solhiem\.htm$ /solheim.html [R=301,L]
+RewriteRule ^solhiem\.html$ /solheim.html [R=301,L]
+RewriteRule ^solhiem\.htm$ /solheim.html [R=301,L]
+
+# Nike pages
+RewriteRule ^nikeballs\.html$ /nike.html [R=301,L]
+RewriteRule ^Nikeblack1\.html$ /nike-press-black1.html [R=301,L]
+RewriteRule ^nikeblack1\.html$ /nike-press-black1.html [R=301,L]
+RewriteRule ^Nikeblack2\.html$ /nike-press-black2.html [R=301,L]
+RewriteRule ^nikeblack2\.html$ /nike-press-black2.html [R=301,L]
+RewriteRule ^Nikeblack3\.html$ /nike-press-black3.html [R=301,L]
+RewriteRule ^nikeblack3\.html$ /nike-press-black3.html [R=301,L]
+RewriteRule ^Nikeblack4\.html$ /nike-press-black4.html [R=301,L]
+RewriteRule ^nikeblack4\.html$ /nike-press-black4.html [R=301,L]
+RewriteRule ^Nikekarma\.html$ /nike-karma.html [R=301,L]
+RewriteRule ^nikekarma\.html$ /nike-karma.html [R=301,L]
+
+# Misc old pages → Home
+RewriteRule ^008000\.html$ /index.html [R=301,L]
+RewriteRule ^_'\.html$ /index.html [R=301,L]
