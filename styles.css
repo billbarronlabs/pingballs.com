@@ -529,6 +529,26 @@ body {
   border-bottom: 2px solid var(--border);
 }
 
+.values-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.values-table th.sortable:hover {
+  background: var(--surface);
+}
+
+.values-table th.sortable.sorted {
+  background: var(--surface);
+}
+
+.sort-arrow {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
 .values-table td {
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid var(--border);

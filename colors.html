@@ -91,10 +91,10 @@
         <table class="values-table" id="colorsTable">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Color Description</th>
-              <th>Rarity (1-10)</th>
-              <th>Value ($)</th>
+              <th class="sortable" data-col="0" data-type="catalog"># <span class="sort-arrow"></span></th>
+              <th class="sortable" data-col="1" data-type="text">Color Description <span class="sort-arrow"></span></th>
+              <th class="sortable" data-col="2" data-type="rarity">Rarity (1-10) <span class="sort-arrow"></span></th>
+              <th class="sortable" data-col="3" data-type="value">Value ($) <span class="sort-arrow"></span></th>
             </tr>
           </thead>
           <tbody>
@@ -515,6 +515,89 @@
 
       // Initialize count
       updateCount(rows.length);
+
+      // Column sorting
+      var currentSort = { col: -1, asc: true };
+      var headers = table.querySelectorAll('th.sortable');
+
+      function parseCatalog(text) {
+        var match = text.match(/^(\d+)([A-Za-z]*)$/);
+        if (!match) return [9999, text];
+        return [parseInt(match[1], 10), match[2]];
+      }
+
+      function parseValue(text) {
+        // Extract first number from values like "$8-17", "$1,200-1,500", "$1000+", "$2,800"
+        var cleaned = text.replace(/[$,+]/g, '');
+        var match = cleaned.match(/(\d+)/);
+        return match ? parseInt(match[1], 10) : 0;
+      }
+
+      function getSortValue(row, colIndex, type) {
+        if (type === 'rarity') return parseInt(row.getAttribute('data-rarity'), 10) || 0;
+        var cell = row.cells[colIndex];
+        var text = cell.textContent.trim();
+        if (type === 'catalog') return parseCatalog(text);
+        if (type === 'value') return parseValue(text);
+        return text.toLowerCase();
+      }
+
+      function sortTable(colIndex, type) {
+        if (currentSort.col === colIndex) {
+          currentSort.asc = !currentSort.asc;
+        } else {
+          currentSort.col = colIndex;
+          currentSort.asc = true;
+        }
+
+        // Update arrow indicators
+        for (var h = 0; h < headers.length; h++) {
+          var arrow = headers[h].querySelector('.sort-arrow');
+          if (parseInt(headers[h].getAttribute('data-col'), 10) === colIndex) {
+            arrow.textContent = currentSort.asc ? ' \u25B2' : ' \u25BC';
+            headers[h].classList.add('sorted');
+          } else {
+            arrow.textContent = '';
+            headers[h].classList.remove('sorted');
+          }
+        }
+
+        var rowsArray = Array.prototype.slice.call(rows);
+        var dir = currentSort.asc ? 1 : -1;
+
+        rowsArray.sort(function(a, b) {
+          var va = getSortValue(a, colIndex, type);
+          var vb = getSortValue(b, colIndex, type);
+
+          if (type === 'catalog') {
+            // Compare numeric part first, then suffix
+            if (va[0] !== vb[0]) return (va[0] - vb[0]) * dir;
+            return va[1] < vb[1] ? -dir : va[1] > vb[1] ? dir : 0;
+          }
+          if (type === 'text') {
+            return va < vb ? -dir : va > vb ? dir : 0;
+          }
+          // numeric (rarity, value)
+          return (va - vb) * dir;
+        });
+
+        for (var i = 0; i < rowsArray.length; i++) {
+          tbody.appendChild(rowsArray[i]);
+        }
+
+        // Re-apply current filter
+        filterTable();
+      }
+
+      for (var h = 0; h < headers.length; h++) {
+        (function(header) {
+          header.addEventListener('click', function() {
+            var col = parseInt(header.getAttribute('data-col'), 10);
+            var type = header.getAttribute('data-type');
+            sortTable(col, type);
+          });
+        })(headers[h]);
+      }
     })();
   </script>
 
