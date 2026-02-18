@@ -586,6 +586,22 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+.photo-cell {
+  padding: 0.35rem 0.5rem !important;
+  width: 50px;
+  text-align: center;
+}
+
+.ball-thumb {
+  border-radius: 50%;
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+.ball-photo-link:hover .ball-thumb {
+  transform: scale(1.25);
+}
+
 /* ===== Gallery ===== */
 .gallery-grid {
   display: grid;
@@ -944,6 +960,16 @@ body {
   .values-table th,
   .values-table td {
     padding: 0.6rem 0.75rem;
+  }
+
+  .photo-cell {
+    padding: 0.25rem 0.35rem !important;
+    width: 36px;
+  }
+
+  .ball-thumb {
+    width: 30px;
+    height: 30px;
   }
 
   .gallery-grid {
