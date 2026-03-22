@@ -50,7 +50,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="colors.html">Colors &amp; Values</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="rare.html">Rare Balls</a></li>
         <li><a href="history.html" class="active">History</a></li>
         <li><a href="collectors.html">Collectors</a></li>
         <li><a href="solheim.html">Karsten Solheim</a></li>
@@ -98,16 +98,40 @@
       <p>Colored balls were made for customer orders, not for stock. Karsten had basic colors and mixed powder in to change colors, which is why there are far more than the 72 <a href="colors.html">color combinations</a> that Karsten officially acknowledged.</p>
       <p>The golf ball making equipment has been removed from the Karsten plant. The building formerly used for Ping golf ball production is now used for club production. Learn more about the man behind it all on our <a href="solheim.html">Karsten Solheim</a> page.</p>
 
+      <div class="section-header" style="margin-top: 3rem;">
+        <h2>Vintage Ping Advertisements</h2>
+        <p>Original Karsten catalog pages and Ping golf ball advertisements.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD1A.JPG" alt="Vintage Ping custom imprint golf balls advertisement catalog page" loading="lazy"></div>
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD2A.JPG" alt="Original Karsten Ping Eye golf ball color options catalog" loading="lazy"></div>
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD3A.JPG" alt="Ping golf ball two-tone color combinations vintage advertisement" loading="lazy"></div>
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD4A.JPG" alt="Karsten Manufacturing Ping Eye golf ball promotional material" loading="lazy"></div>
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD5A.JPG" alt="Vintage Ping Eye2 golf ball catalog page with color options" loading="lazy"></div>
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD6A.JPG" alt="Original Ping golf ball advertisement showing two-tone designs" loading="lazy"></div>
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD7A.JPG" alt="Karsten Ping golf ball vintage catalog promotional advertisement" loading="lazy"></div>
+        <div class="gallery-item" onclick="openLightbox(this)"><img src="images/AD8A.JPG" alt="Ping Eye golf ball color chart vintage Karsten advertisement" loading="lazy"></div>
+      </div>
+
       <div style="margin-top: 3rem; padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
         <h2 style="font-size: 1.2rem; margin-bottom: 1rem; border: none; padding: 0;">Continue Exploring</h2>
         <ul style="list-style: none; padding: 0;">
           <li style="margin-bottom: 0.5rem;"><a href="colors.html" style="color: var(--accent);">&#127912; Colors &amp; Values Price Guide</a> &mdash; See all 250+ color combinations with rarity ratings and values</li>
           <li style="margin-bottom: 0.5rem;"><a href="faq.html" style="color: var(--accent);">&#10067; Frequently Asked Questions</a> &mdash; Common questions about Ping ball rarity and identification</li>
-          <li style="margin-bottom: 0.5rem;"><a href="gallery.html" style="color: var(--accent);">&#128247; Photo Gallery</a> &mdash; Browse photos of rare two-tone color combinations</li>
+          <li style="margin-bottom: 0.5rem;"><a href="rare.html" style="color: var(--accent);">&#128247; Rare Balls</a> &mdash; Factory rejects and unusual color combinations from tour giveaways</li>
           <li><a href="nike.html" style="color: var(--accent);">&#9898; Nike Mojo &amp; Karma Balls</a> &mdash; The spiritual successor to colored Ping balls</li>
         </ul>
       </div>
     </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" onclick="navigateLightbox(event, -1)" aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-next" onclick="navigateLightbox(event, 1)" aria-label="Next">&rsaquo;</button>
+    <img id="lightbox-img" src="" alt="">
   </div>
 
   <footer class="footer">
@@ -116,6 +140,44 @@
       <p><a href="mailto:info@pingballs.com">info@pingballs.com</a></p>
     </div>
   </footer>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const items = Array.from(document.querySelectorAll('.gallery-item'));
+  let currentIndex = -1;
+
+  function openLightbox(el) {
+    currentIndex = items.indexOf(el);
+    const img = el.querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function navigateLightbox(e, dir) {
+    e.stopPropagation();
+    currentIndex = (currentIndex + dir + items.length) % items.length;
+    const img = items[currentIndex].querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    if (e.key === 'ArrowLeft') navigateLightbox(e, -1);
+    if (e.key === 'ArrowRight') navigateLightbox(e, 1);
+  });
+</script>
 
 </body>
 </html>
